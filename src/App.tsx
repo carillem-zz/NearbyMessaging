@@ -1,7 +1,16 @@
 import React from 'react';
+import RNNearbyMessagingLibrary from 'react-native-nearby-messaging-library-with-notifications';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class App extends React.Component {
+const nearbyMessaging: any = RNNearbyMessagingLibrary
+
+export default class App extends React.Component
+{
+  componentDidMount()
+  {
+    nearbyMessaging.checkLibraryConnection()
+  }
+
   render() {
     return (
       <View style={styles.container}>
