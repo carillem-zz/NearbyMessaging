@@ -1,31 +1,27 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "lint": "tslint -p tsconfig.json src/**/*.{ts,tsx}",
-    "start": "expo start",
+    "start": "react-native start",
     "test": "jest",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "eject": "expo eject"
+    "reverse": "adb reverse tcp:8081 tcp:8081",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "^33.0.0",
     "lodash": "^4.17.14",
+    "metro-react-native-babel-preset": "^0.55.0",
     "react": "16.8.3",
     "react-dom": "^16.8.6",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react-native": "0.59.8",
     "react-native-web": "^0.11.4"
   },
   "devDependencies": {
-    "@types/expo": "^32.0.13",
     "@types/jest": "^24.0.15",
     "@types/react": "^16.8.23",
     "@types/react-native": "^0.60.0",
     "@types/react-test-renderer": "^16.8.2",
-    "babel-preset-expo": "^5.1.1",
     "jest": "^24.8.0",
-    "jest-expo": "^33.0.2",
     "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "^16.8.6",
     "ts-jest": "^24.0.2",
