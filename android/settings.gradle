@@ -1,3 +1,5 @@
 rootProject.name = 'NearbyMessaging'
+include ':react-native-nearby-messaging-library-with-notifications'
+project(':react-native-nearby-messaging-library-with-notifications').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-nearby-messaging-library-with-notifications/android')
 
 include ':app'
