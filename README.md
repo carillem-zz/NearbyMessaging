@@ -2,7 +2,7 @@
 Creates a react native project with Google's Nearby Messaging API already set up and integrated
 
 ## Google Nearby Messaging
-Learn more about [Google's Nearby Messaging API] (https://developers.google.com/nearby/messages/overview)
+Learn more about [Google's Nearby Messaging API](https://developers.google.com/nearby/messages/overview)
 
 ## Get started
 
@@ -17,17 +17,17 @@ Learn more about [Google's Nearby Messaging API] (https://developers.google.com/
 8. Update to Gradle version as suggested
 9. Start and run on Android device
 
-### iOS :soon:
+### :soon: iOS
  Coming soon.
 
 ## How it's made
 **Note:** Only works if your project is fully ejected as a React Native project from expo
 
-### A. If you don't have a project yet, clone my TypeScriptExpoTemplate repo from [here](https://github.com/carillem/TypescriptExpoTemplate) using
+### A. If you don't have a project yet, clone my [TypeScriptExpoTemplate](https://github.com/carillem/TypescriptExpoTemplate) repo using
 `git clone https://github.com/carillem/TypescriptExpoTemplate`
 
-### B. Bye, Expo :open_hands:
-[Source:](https://medium.com/reactbrasil/being-free-from-expo-in-react-native-apps-310034a3729)
+### B. :open_hands: Bye, Expo
+[Source](https://medium.com/reactbrasil/being-free-from-expo-in-react-native-apps-310034a3729)
 
 #### 1. Eject from expo
 ```
@@ -40,7 +40,9 @@ What should your Android Studio and XCode projects be called? NearbyMessaging
 - Uninstall the following packages: `yarn remove <package_name>` or `npm un <package_name>`
   - `@types/expo`
   - `babel-preset-expo`
-- Install metro-react-native-babel-preset library for Metro Bundler: `yarn add metro-react-native-babel-preset` or `npm install metro-react-native-babel-preset`
+- Install metro-react-native-babel-preset library for Metro Bundler:
+
+ `yarn add metro-react-native-babel-preset` or `npm install metro-react-native-babel-preset`
 - Delete `.expo/` library
 - Update `babel.config.js` to:
 ```javascript
@@ -57,20 +59,24 @@ module.exports = function(api) {
 #### 5. Run on Android device
 - Open Android Studio
 - Import the `root_project/android` folder and sync Gradle
-(**Note:Allow Gradle to be updated to the latest version**)
+
+(**Note:** Allow Gradle to be updated to the latest version)
 - Add minSdk to the project level `build.gradle`: `build.gradle(Project:<projectName>)`
   - minSdkVersion = 21
 - Run on android device or emulator
 
 ### C. Add the Nearby Messaging module to your project
 1. In the root folder of your project
- 1. Install the `react-native-nearby-messaging-library-with-notifications` package:
+  1. Install the `react-native-nearby-messaging-library-with-notifications` package:
+
      `yarn add react-native-nearby-messaging-library-with-notifications` or `npm install -i react-native-nearby-messaging-library-with-notifications`
+
     (**Note:** This library is a react native wrapper for the newest version Google’s Nearby Messaging API)
- 2. Link the library with your react native project with: `react-native link react-native-nearby-messaging-library-with-notifications`
+  2. Link the library with your react native project with:
+    `react-native link react-native-nearby-messaging-library-with-notifications`
 2. In `root_project/android` via Android Studio
- - Check that `react-native link` installed properly
-  - In `settings.gradle`
+  - Check that `react-native link` installed properly
+    - In `settings.gradle`
     ```
     rootProject.name = 'NearbyMessaging'
     include ':react-native-nearby-messaging-library-with-notifications'
@@ -79,11 +85,11 @@ module.exports = function(api) {
 
     include ':app'
     ```
-  - In `build.gradle (Module:app)`, add to the list of dependencies
+    - In `build.gradle (Module:app)`, add to the list of dependencies
    ```
    implementation project(':react-native-nearby-messaging-library-with-notifications')
    ```
-  - In app > java > com.projectname > MainApplication, `new RNNearbyMessagingLibraryPackage()` should be inside the `getPackages()` function
+   - In app > java > com.projectname > MainApplication, `new RNNearbyMessagingLibraryPackage()` should be inside the `getPackages()` function
    ```
    public class MainApplication extends Application implements ReactApplication {
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -118,8 +124,8 @@ module.exports = function(api) {
     }
   }
    ```
- - Update `app/manifests/AndroidManifest.xml`
-  - Permission requests
+  - Update `app/manifests/AndroidManifest.xml`
+    - Permission requests
    ```
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -129,17 +135,17 @@ module.exports = function(api) {
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
    ```
-  - API Key
+   - API Key
    ```
    <meta-data
           android:name="com.google.android.nearby.messages.API_KEY"
           android:value="YOURAPIKEYHERE" />
    ```
- - Run on Android device to make sure it's all up and running
+   - Run on Android device to make sure it's all up and running
 
  ### D. Call Nearby Messaging from React Native project
  1. For typescript, create a declaration file (d.ts) inside the root folder (eg. `declarations.d.ts`):
- 
+
     `declare module 'react-native-nearby-messaging-library-with-notifications’`
 2. Import package and call library
  ```
