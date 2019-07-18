@@ -42,7 +42,7 @@ What should your Android Studio and XCode projects be called? NearbyMessaging
   - `babel-preset-expo`
 - Install metro-react-native-babel-preset library for Metro Bundler:
 
- `yarn add metro-react-native-babel-preset` or `npm install metro-react-native-babel-preset`
+  `yarn add metro-react-native-babel-preset` or `npm install metro-react-native-babel-preset`
 - Delete `.expo/` library
 - Update `babel.config.js` to:
 ```javascript
@@ -60,87 +60,87 @@ module.exports = function(api) {
 - Open Android Studio
 - Import the `root_project/android` folder and sync Gradle
 
-(**Note:** Allow Gradle to be updated to the latest version)
+  (**Note:** Allow Gradle to be updated to the latest version)
 - Add minSdk to the project level `build.gradle`: `build.gradle(Project:<projectName>)`
   - minSdkVersion = 21
 - Run on android device or emulator
 
 ### C. Add the Nearby Messaging module to your project
 1. In the root folder of your project
-  1. Install the `react-native-nearby-messaging-library-with-notifications` package:
+  - Install the `react-native-nearby-messaging-library-with-notifications` package:
 
      `yarn add react-native-nearby-messaging-library-with-notifications` or `npm install -i react-native-nearby-messaging-library-with-notifications`
 
-    (**Note:** This library is a react native wrapper for the newest version Google’s Nearby Messaging API)
-  2. Link the library with your react native project with:
+     (Note: This library is a react native wrapper for the newest version Google’s Nearby Messaging API)
+  - Link the library with your react native project with:
     `react-native link react-native-nearby-messaging-library-with-notifications`
 2. In `root_project/android` via Android Studio
   - Check that `react-native link` installed properly
     - In `settings.gradle`
-    ```
-    rootProject.name = 'NearbyMessaging'
-    include ':react-native-nearby-messaging-library-with-notifications'
-    project(':react-native-nearby-messaging-library-with-notifications').projectDir =
-            new File(rootProject.projectDir, '../node_modules/react-native-nearby-messaging-library-with-notifications/android')
+      ```
+      rootProject.name = 'NearbyMessaging'
+      include ':react-native-nearby-messaging-library-with-notifications'
+      project(':react-native-nearby-messaging-library-with-notifications').projectDir =
+              new File(rootProject.projectDir, '../node_modules/react-native-nearby-messaging-library-with-notifications/android')
 
-    include ':app'
-    ```
+      include ':app'
+      ```
     - In `build.gradle (Module:app)`, add to the list of dependencies
-   ```
-   implementation project(':react-native-nearby-messaging-library-with-notifications')
-   ```
+     ```
+     implementation project(':react-native-nearby-messaging-library-with-notifications')
+     ```
    - In app > java > com.projectname > MainApplication, `new RNNearbyMessagingLibraryPackage()` should be inside the `getPackages()` function
-   ```
-   public class MainApplication extends Application implements ReactApplication {
-    private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+     ```
+     public class MainApplication extends Application implements ReactApplication {
+      private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+          return BuildConfig.DEBUG;
+        }
+
+        @Override
+        protected List<ReactPackage> getPackages() {
+          return Arrays.<ReactPackage>asList(
+              new MainReactPackage(),
+                new RNNearbyMessagingLibraryPackage()
+          );
+        }
+  
+        @Override
+        protected String getJSMainModuleName() {
+          return "index";
+        }
+      };
+
       @Override
-      public boolean getUseDeveloperSupport() {
-        return BuildConfig.DEBUG;
+      public ReactNativeHost getReactNativeHost() {
+        return mReactNativeHost;
       }
 
       @Override
-      protected List<ReactPackage> getPackages() {
-        return Arrays.<ReactPackage>asList(
-            new MainReactPackage(),
-              new RNNearbyMessagingLibraryPackage()
-        );
+      public void onCreate() {
+        super.onCreate();
+        SoLoader.init(this, /* native exopackage */ false);
       }
-
-      @Override
-      protected String getJSMainModuleName() {
-        return "index";
-      }
-    };
-
-    @Override
-    public ReactNativeHost getReactNativeHost() {
-      return mReactNativeHost;
     }
-
-    @Override
-    public void onCreate() {
-      super.onCreate();
-      SoLoader.init(this, /* native exopackage */ false);
-    }
-  }
-   ```
+     ```
   - Update `app/manifests/AndroidManifest.xml`
     - Permission requests
-   ```
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-   ```
+     ```
+      <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+      <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+      <uses-permission android:name="android.permission.BLUETOOTH" />
+      <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+      <uses-permission android:name="android.permission.INTERNET" />
+      <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+      <uses-permission android:name="android.permission.WAKE_LOCK" />
+     ```
    - API Key
-   ```
-   <meta-data
-          android:name="com.google.android.nearby.messages.API_KEY"
-          android:value="YOURAPIKEYHERE" />
-   ```
+     ```
+     <meta-data
+            android:name="com.google.android.nearby.messages.API_KEY"
+            android:value="YOURAPIKEYHERE" />
+     ```
    - Run on Android device to make sure it's all up and running
 
  ### D. Call Nearby Messaging from React Native project
@@ -148,8 +148,8 @@ module.exports = function(api) {
 
     `declare module 'react-native-nearby-messaging-library-with-notifications’`
 2. Import package and call library
- ```
- import RNNearbyMessagingLibrary from ‘react-native-messaging-library-with-notifications
- RNNearbyMessagingLibrary.checkLibraryConnection()
- ```
+   ```
+   import RNNearbyMessagingLibrary from ‘react-native-messaging-library-with-notifications
+   RNNearbyMessagingLibrary.checkLibraryConnection()
+   ```
 3. Add changes to the RNNearbyMessagingLibraryModule as needed. :)
