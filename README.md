@@ -20,19 +20,21 @@ Learn more about [Google's Nearby Messaging API] (https://developers.google.com/
 ### iOS :soon:
  Coming soon.
 
-## How it's made aka How to add Google's Nearby Messaging to your ejected Expo Application
+## How it's made
 **Note:** Only works if your project is fully ejected as a React Native project from expo
 
-### A. If you don't have a project yet, clone my TypeScriptExpoTemplate repo from [here] (https://github.com/carillem/TypescriptExpoTemplate) using
+### A. If you don't have a project yet, clone my TypeScriptExpoTemplate repo from [here](https://github.com/carillem/TypescriptExpoTemplate) using
 `git clone https://github.com/carillem/TypescriptExpoTemplate`
 
 ### B. Bye, Expo :open_hands:
-[Source:] (https://medium.com/reactbrasil/being-free-from-expo-in-react-native-apps-310034a3729)
+[Source:](https://medium.com/reactbrasil/being-free-from-expo-in-react-native-apps-310034a3729)
 
 #### 1. Eject from expo
-`expo eject`
-**What should your app appear as on a user’s home screen?** `NearbyMessaging`
-**What should your Android Studio and XCode projects be called?** `NearbyMessaging`
+```
+expo eject
+What should your app appear as on a user’s home screen? NearbyMessaging
+What should your Android Studio and XCode projects be called? NearbyMessaging
+```
 
 #### 2. Remove other expo dependencies from project
 - Uninstall the following packages: `yarn remove <package_name>` or `npm un <package_name>`
@@ -54,7 +56,8 @@ module.exports = function(api) {
 #### 4. Run `adb reverse tcp:8081 tcp:8081`
 #### 5. Run on Android device
 - Open Android Studio
-- Import the `root_project/android` folder and sync Gradle(**Note:Allow Gradle to be updated to the latest version**)
+- Import the `root_project/android` folder and sync Gradle
+(**Note:Allow Gradle to be updated to the latest version**)
 - Add minSdk to the project level `build.gradle`: `build.gradle(Project:<projectName>)`
   - minSdkVersion = 21
 - Run on android device or emulator
@@ -135,7 +138,8 @@ module.exports = function(api) {
  - Run on Android device to make sure it's all up and running
 
  ### D. Call Nearby Messaging from React Native project
- 1. For typescript, create a declaration file (d.ts) inside the root folder (eg. `declarations.d.ts`)
+ 1. For typescript, create a declaration file (d.ts) inside the root folder (eg. `declarations.d.ts`):
+ 
     `declare module 'react-native-nearby-messaging-library-with-notifications’`
 2. Import package and call library
  ```
